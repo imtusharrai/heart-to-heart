@@ -21,7 +21,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">About Us</h1>
             {/* Responsive text size example */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Learn more about Heart2Heart Welfare Society, our mission, and our commitment to healthcare
+              Learn more about Heart to Heart Welfare Society, our mission, and our commitment to healthcare
             </p>
           </div>
 

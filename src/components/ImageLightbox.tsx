@@ -89,17 +89,19 @@ export default function ImageLightbox({ images, albumName }: ImageLightboxProps)
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-[9999] flex items-center justify-center">
           <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
-            {/* Close button */}
-            <button 
+            {/* Close button - make it more prominent and move it higher */}
+            <Button 
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
+              className="absolute top-8 right-8 bg-black/50 hover:bg-black/70 text-white z-[9999]"
+              size="icon"
+              variant="outline"
               aria-label="Close lightbox"
             >
               <X size={24} />
-            </button>
-            
+            </Button>
+
             {/* Navigation buttons */}
             <button 
               onClick={() => navigateImage('prev')}

@@ -1,7 +1,11 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Loader2, Mail, Phone, MapPin, Facebook, Twitter, Linkedin } from 'lucide-react';
+// --- EDIT: Import Card components ---
+import { Card, CardContent } from "@/components/ui/card"; // Added Card imports
+// --- END EDIT ---
 
 // Reuse the same interface
 interface ContactData {
@@ -151,12 +155,8 @@ export default function ContactClientWrapper() {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Map and Form Section */}
-        <div className="space-y-8">
-           {/* Conditionally render map */}
-           {mapEnabled && mapEmbedUrl && (
+          {/* Conditionally render map */}
+          {mapEnabled && mapEmbedUrl && (
             <div>
               <h2 className="text-2xl font-semibold text-foreground mb-4">Find Us</h2>
               <div className="aspect-video overflow-hidden rounded-lg border border-border shadow-md">
@@ -173,16 +173,24 @@ export default function ContactClientWrapper() {
               </div>
             </div>
           )}
+        </div>
+        
+        {/* Map and Form Section */}
+        <div className="space-y-8">
+        {formEnabled && (
+             <Card> {/* Replaced div with Card */}
+                <CardContent className="pt-6"> {/* Added CardContent with top padding */}
+                   {/* Make sure the ContactForm component is rendered here */}
+                   <ContactForm />
+                </CardContent>
+             </Card>
+           )}
 
           {/* ---- START CHECK ---- */}
           {/* Conditionally render the Contact Form */}
           {/* Ensure this block exists and checks the formEnabled flag */}
-          {formEnabled && (
-             <div>
-                {/* Make sure the ContactForm component is rendered here */}
-                <ContactForm />
-             </div>
-           )}
+          {/* --- EDIT: Wrap ContactForm in Card --- */}
+           {/* --- END EDIT --- */}
            {/* ---- END CHECK ---- */}
         </div>
       </div>

@@ -79,11 +79,15 @@ export default function GalleryAdminClient() {
       if (!res.ok) {
         throw new Error('Failed to fetch gallery items');
       }
-      const data: GalleryItem[] = await res.json();
+      const data: { albums: Album[], images: GalleryItem[] } = await res.json(); // Adjust type to match API
       
       // Separate albums from images
-      const albumItems = data.filter(item => !item.url) as Album[]; // Cast as Album[]
-      const imageItems = data.filter(item => item.url) as GalleryItem[]; // Cast as GalleryItem[]
+      // --- EDIT: Correctly access nested data ---
+      // const albumItems = data.filter(item => !item.url) as Album[]; // Old incorrect way
+      // const imageItems = data.filter(item => item.url) as GalleryItem[]; // Old incorrect way
+      const albumItems = data.albums || []; // Access the albums array
+      const imageItems = data.images || []; // Access the images array
+      // --- END EDIT ---
       
       setGalleryItems(imageItems);
       setAlbums(albumItems);

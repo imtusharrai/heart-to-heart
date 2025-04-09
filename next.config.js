@@ -1,13 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Add the images configuration block
+  reactStrictMode: true,
+  // Add or modify the images configuration
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'raw.githubusercontent.com',
-        port: '',
-        pathname: '/imtusharrai/heart2heart/main/public/**', // Be specific if possible
+        hostname: 'raw.githubusercontent.com', // This hostname seems correctly listed
+        port: '', // Optional: usually empty for standard HTTPS (port 443)
+        pathname: '/imtusharrai/heart-to-heart/**', // Optional: be more specific if needed
       },
       // Add other domains if you host images elsewhere
     ],
