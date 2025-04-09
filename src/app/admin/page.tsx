@@ -1,5 +1,7 @@
 'use client';
 
+// Add useAuth import
+import { useAuth } from '@/contexts/AuthContext';
 import React, { useState, useEffect } from 'react'; // Import useState, useEffect
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,6 +41,9 @@ interface Submission {
   message: string;
   submittedAt: string;
 }
+
+// Remove the useAuth import and logout handler
+import LogoutButton from '@/components/LogoutButton';
 
 export default function AdminPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
@@ -104,10 +109,23 @@ export default function AdminPage() {
   };
   // ---- END NEW DELETE HANDLER ----
 
+  // Add useAuth hook
+  const { logout } = useAuth();
+
+  // Add logout handler
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // Next.js will automatically redirect to login page due to ProtectedRoute
+    } catch (error) {
+      console.error('Failed to logout:', error);
+    }
+  };
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6 text-foreground">Admin Dashboard</h1>
+      {/* Remove logout button and simplify header */}
+      <h1 className="text-3xl font-bold text-foreground mb-6">Admin Dashboard</h1>
 
       {/* Update grid-cols to 6 for the new tab */}
       <Tabs defaultValue="home" className="w-full">
